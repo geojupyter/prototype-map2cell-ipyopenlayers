@@ -7,9 +7,12 @@ import {
   unpack_models,
   ViewList,
 } from '@jupyter-widgets/base';
+import { INotebookTracker } from '@jupyterlab/notebook';
 import { LayerModel, LayerView } from './layer';
 import { BaseOverlayModel, BaseOverlayView } from './baseoverlay';
 import { BaseControlModel, BaseControlView } from './basecontrol';
+import Draw from 'ol/interaction/Draw.js';
+import VectorSource from 'ol/source/Vector.js';
 import { ViewObjectEventTypes } from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import MapBrowserEvent from 'ol/MapBrowserEvent';
@@ -37,6 +40,7 @@ export * from './vectortilelayer';
 const DEFAULT_LOCATION = [0.0, 0.0];
 
 export class MapModel extends DOMWidgetModel {
+
   defaults() {
     return {
       ...super.defaults(),
@@ -76,6 +80,10 @@ export class MapView extends DOMWidgetView {
     useGeographic();
     this.el.classList.add('jupyter-widgets');
     this.el.classList.add('ipyopenlayer-widgets');
+
+    this.exportButton = document.createElement('button');
+    this.exportButton.textContent = 'Export shape to Python';
+    this.el.appendChild(this.exportButton);
 
     this.map_container = document.createElement('div');
     this.map_container.classList.add('ol-container');
@@ -123,6 +131,12 @@ export class MapView extends DOMWidgetView {
       ],
     });
 
+    this.vectorSource = new VectorSource();
+    this.map.addInteraction(new Draw({
+      source: this.vectorSource,
+      type: "Point",
+    }));
+
     this.map.on('click', (event: MapBrowserEvent<MouseEvent>) => {
       this.handleMapClick(event);
     });
@@ -147,6 +161,31 @@ export class MapView extends DOMWidgetView {
     this.model.on('change:controls', this.controlChanged, this);
     this.model.on('change:zoom', this.zoomChanged, this);
     this.model.on('change:center', this.centerChanged, this);
+
+    this.exportButton.onclick = () => {
+
+      const notebook = MapView.tracker?.currentWidget?.content;
+      if (!notebook?.model) {
+        console.debug("No Notebook moodel found");
+        return;
+      }
+
+      // TODO: Get the data out of this.vectorSource
+      // TODO: Create a template for creating a Shapely Point object from geojson
+      //       E.g. `shapely.from_geojson(geojson)`?
+      // TODO: Replace "print('Hello world')" with the templated string above
+
+      notebook.model.sharedModel.insertCell(
+        notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
+        {
+          cell_type: 'code',
+          source: "print('Hello world')",
+          metadata: {}
+        }
+      );
+
+      return;
+    }
   }
 
   handleMapClick(event: MapBrowserEvent<MouseEvent>) {
@@ -240,7 +279,10 @@ export class MapView extends DOMWidgetView {
   imageElement: HTMLImageElement;
   map_container: HTMLDivElement;
   map: Map;
+  vectorSource: VectorSource;
   layerViews: ViewList<LayerView>;
   overlayViews: ViewList<BaseOverlayView>;
   controlViews: ViewList<BaseControlView>;
+  private exportButton: HTMLButtonElement;
+  static tracker: INotebookTracker;
 }
