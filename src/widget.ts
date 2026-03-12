@@ -132,7 +132,7 @@ export class MapView extends DOMWidgetView {
       ],
     });
 
-    this.vectorSource = new VectorSource({ wrapX: false });
+    this.vectorSource = new VectorSource();
     this.map.addInteraction(new Draw({
       source: this.vectorSource,
       type: "Point",
