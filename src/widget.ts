@@ -25,6 +25,7 @@ import { useGeographic } from 'ol/proj';
 import { ObjectEvent } from 'ol/Object';
 import { OSM } from 'ol/source';
 import { Vector } from 'ol/layer';
+import GeoJSON from 'ol/format/GeoJSON';
 export * from './imageoverlay';
 export * from './geojson';
 export * from './video_overlay';
@@ -172,16 +173,15 @@ export class MapView extends DOMWidgetView {
         return;
       }
 
-      // TODO: Get the data out of this.vectorSource
-      // TODO: Create a template for creating a Shapely Point object from geojson
-      //       E.g. `shapely.from_geojson(geojson)`?
-      // TODO: Replace "print('Hello world')" with the templated string above
+      const exportedFeatures = new GeoJSON().writeFeatures(this.vectorSource.getFeatures());
+
+      const exportScriptSource = 'import shapely\nimport matplotlib.pyplot as plt\nexported_shapely = shapely.from_geojson(' + JSON.stringify(exportedFeatures) + ')\nplt.scatter(shapely.get_coordinates(exported_shapely)[:, 0],shapely.get_coordinates(exported_shapely)[:, 1])\nplt.show()\nprint("generated on ' + new Date().toISOString() + '")';
 
       notebook.model.sharedModel.insertCell(
         notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
         {
           cell_type: 'code',
-          source: "print('Hello world')",
+          source: exportScriptSource,
           metadata: {}
         }
       );
