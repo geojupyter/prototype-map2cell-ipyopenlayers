@@ -37,8 +37,6 @@ classifiers = [
 dependencies = [
     "ipywidgets>=8.0.0",
     "jupyter>=1.1.1",
-    "matplotlib>=3.9.4",
-    "shapely>=2.0.7",
     "traitlets",
 ]
 version = "0.2.1"
@@ -121,3 +119,9 @@ regex = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)((?P<channel>a|b|rc|
 [tool.tbump.git]
 message_template = "Bump to {new_version}"
 tag_template = "v{new_version}"
+
+[dependency-groups]
+play = [
+    "matplotlib>=3.9.4",
+    "shapely>=2.0.7",
+]
