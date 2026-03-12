@@ -24,6 +24,7 @@ import '../css/widget.css';
 import { useGeographic } from 'ol/proj';
 import { ObjectEvent } from 'ol/Object';
 import { OSM } from 'ol/source';
+import { Vector } from 'ol/layer';
 export * from './imageoverlay';
 export * from './geojson';
 export * from './video_overlay';
@@ -131,11 +132,12 @@ export class MapView extends DOMWidgetView {
       ],
     });
 
-    this.vectorSource = new VectorSource();
+    this.vectorSource = new VectorSource({ wrapX: false });
     this.map.addInteraction(new Draw({
       source: this.vectorSource,
       type: "Point",
     }));
+    this.map.addLayer(new Vector({ source: this.vectorSource, zIndex: 1000 }));
 
     this.map.on('click', (event: MapBrowserEvent<MouseEvent>) => {
       this.handleMapClick(event);
