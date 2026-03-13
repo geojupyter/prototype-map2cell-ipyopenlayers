@@ -96,7 +96,7 @@ export class MapView extends DOMWidgetView {
       this.rendererDropdown.appendChild(opt);
     });
     this.el.appendChild(this.rendererDropdown);
-    
+
     this.CRSDropdown = document.createElement('select');
     const projections = [
       'PlateCarree', 'AlbersEqualArea', 'AzimuthalEquidistant', 'EquidistantConic',
@@ -114,10 +114,10 @@ export class MapView extends DOMWidgetView {
       option.textContent = proj;
       this.CRSDropdown.appendChild(option);
     });
-    
+
     this.el.appendChild(this.CRSDropdown);
     this.CRSDropdown.style.display = 'none';
-    
+
     this.rendererDropdown.addEventListener('change', () => {
       if (this.rendererDropdown.value === 'cartopy') {
         this.CRSDropdown.style.display = 'block';
