@@ -88,7 +88,7 @@ export class MapView extends DOMWidgetView {
     this.el.appendChild(this.exportButton);
 
     this.rendererDropdown = document.createElement('select');
-    const renderers = ['shapely','cartopy','none'];
+    const renderers = ['shapely','cartopy', 'llm','none'];
     renderers.forEach(r => {
       const opt = document.createElement('option');
       opt.value = r;
@@ -114,22 +114,35 @@ export class MapView extends DOMWidgetView {
       option.textContent = proj;
       this.CRSDropdown.appendChild(option);
     });
-
     this.el.appendChild(this.CRSDropdown);
     this.CRSDropdown.style.display = 'none';
+
+    this.llm_prompt = document.createElement('textarea');
+    this.llm_prompt.placeholder = 'Enter LLM prompt...';
+    this.el.appendChild(this.llm_prompt);
 
     this.rendererDropdown.addEventListener('change', () => {
       if (this.rendererDropdown.value === 'cartopy') {
         this.CRSDropdown.style.display = 'block';
+        this.llm_prompt.style.display = 'none';
+      } else if (this.rendererDropdown.value === 'llm') {
+        this.llm_prompt.style.display = 'block';
+        this.CRSDropdown.style.display = 'none';
       } else {
         this.CRSDropdown.style.display = 'none';
+        this.llm_prompt.style.display = 'none';
       }
     });
 
     if (this.rendererDropdown.value === 'cartopy') {
       this.CRSDropdown.style.display = 'block';
+      this.llm_prompt.style.display = 'none';
+    } else if (this.rendererDropdown.value === 'llm') {
+      this.llm_prompt.style.display = 'block';
+      this.CRSDropdown.style.display = 'none';
     } else {
       this.CRSDropdown.style.display = 'none';
+      this.llm_prompt.style.display = 'none';
     }
 
     this.map_container = document.createElement('div');
@@ -368,5 +381,6 @@ print("generated on ${new Date().toISOString()}")
   private exportButton: HTMLButtonElement;
   private rendererDropdown: HTMLSelectElement;
   private CRSDropdown: HTMLSelectElement;
+  private llm_prompt: HTMLTextAreaElement;
   static tracker: INotebookTracker;
 }
