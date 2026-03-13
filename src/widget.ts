@@ -224,9 +224,36 @@ export class MapView extends DOMWidgetView {
       if (this.rendererDropdown.value === 'none') {
         exportScriptSource = 'drawn_data_JSON=' + JSON.stringify(exportedFeatures);
       } else if (this.rendererDropdown.value === 'shapely') {
-        exportScriptSource = 'import shapely\nimport matplotlib.pyplot as plt\nexported_shapely = shapely.from_geojson(' + JSON.stringify(exportedFeatures) + ')\nplt.scatter(shapely.get_coordinates(exported_shapely)[:, 0],shapely.get_coordinates(exported_shapely)[:, 1])\nplt.show()\nprint("generated on ' + new Date().toISOString() + '")';
+        exportScriptSource = `
+import shapely
+import matplotlib.pyplot as plt
+
+exported_shapely = shapely.from_geojson(${JSON.stringify(exportedFeatures)})
+plt.scatter(
+    shapely.get_coordinates(exported_shapely)[:, 0],
+    shapely.get_coordinates(exported_shapely)[:, 1],
+)
+plt.show()
+print("generated on ${new Date().toISOString()}")
+        `;
       } else if (this.rendererDropdown.value === 'cartopy') {
-        exportScriptSource = 'print("This feature is a work in progress")';
+        exportScriptSource = `
+import shapely
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+exported_shapely = shapely.from_geojson(${JSON.stringify(exportedFeatures)})
+ax = plt.axes(projection=ccrs.${this.CRSDropdown.value}())
+ax.set_global()
+ax.coastlines()
+plt.scatter(
+    shapely.get_coordinates(exported_shapely)[:, 0],
+    shapely.get_coordinates(exported_shapely)[:, 1],
+  transform=ccrs.PlateCarree(),
+)
+plt.show()
+print("generated on ${new Date().toISOString()}")
+        `;
       }
 
 
