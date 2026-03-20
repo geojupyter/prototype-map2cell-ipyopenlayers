@@ -11,7 +11,6 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import { LayerModel, LayerView } from './layer';
 import { BaseOverlayModel, BaseOverlayView } from './baseoverlay';
 import { BaseControlModel, BaseControlView } from './basecontrol';
-import Draw from 'ol/interaction/Draw.js';
 import VectorSource from 'ol/source/Vector.js';
 import { ViewObjectEventTypes } from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
@@ -24,7 +23,6 @@ import '../css/widget.css';
 import { useGeographic } from 'ol/proj';
 import { ObjectEvent } from 'ol/Object';
 import { OSM } from 'ol/source';
-import { Vector } from 'ol/layer';
 import GeoJSON from 'ol/format/GeoJSON';
 export * from './imageoverlay';
 export * from './geojson';
@@ -34,6 +32,7 @@ export * from './zoomslider';
 export * from './fullscreen';
 export * from './scaleline';
 export * from './mouseposition';
+export * from './drawAndExport';
 export * from './heatmap';
 export * from './rastertilelayer';
 export * from './geotifflayer';
@@ -177,13 +176,6 @@ export class MapView extends DOMWidgetView {
         }),
       ],
     });
-
-    this.vectorSource = new VectorSource();
-    this.map.addInteraction(new Draw({
-      source: this.vectorSource,
-      type: "Point",
-    }));
-    this.map.addLayer(new Vector({ source: this.vectorSource, zIndex: 1000 }));
 
     this.map.on('click', (event: MapBrowserEvent<MouseEvent>) => {
       this.handleMapClick(event);

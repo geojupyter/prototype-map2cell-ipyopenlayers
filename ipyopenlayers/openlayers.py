@@ -247,6 +247,13 @@ class MousePosition(BaseControl):
     _model_name = Unicode("MousePositionModel").tag(sync=True)
 
 
+class DrawAndExport(BaseControl):
+    """A control to draw a shape and export it."""
+
+    _view_name = Unicode("DrawAndExportView").tag(sync=True)
+    _model_name = Unicode("DrawAndExportModel").tag(sync=True)
+    
+
 class Map(DOMWidget):
     """Map class.
 
