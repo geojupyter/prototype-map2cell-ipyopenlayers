@@ -23,7 +23,6 @@ import '../css/widget.css';
 import { useGeographic } from 'ol/proj';
 import { ObjectEvent } from 'ol/Object';
 import { OSM } from 'ol/source';
-import GeoJSON from 'ol/format/GeoJSON';
 export * from './imageoverlay';
 export * from './geojson';
 export * from './video_overlay';
@@ -81,55 +80,6 @@ export class MapView extends DOMWidgetView {
     useGeographic();
     this.el.classList.add('jupyter-widgets');
     this.el.classList.add('ipyopenlayer-widgets');
-
-    this.exportButton = document.createElement('button');
-    this.exportButton.textContent = 'Export shape to Python';
-    this.el.appendChild(this.exportButton);
-
-    this.rendererDropdown = document.createElement('select');
-    const renderers = ['shapely','cartopy','none'];
-    renderers.forEach(r => {
-      const opt = document.createElement('option');
-      opt.value = r;
-      opt.textContent = r;
-      this.rendererDropdown.appendChild(opt);
-    });
-    this.el.appendChild(this.rendererDropdown);
-
-    this.CRSDropdown = document.createElement('select');
-    const projections = [
-      'PlateCarree', 'AlbersEqualArea', 'AzimuthalEquidistant', 'EquidistantConic',
-      'LambertConformal', 'LambertCylindrical', 'Mercator', 'Miller', 'Mollweide',
-      'ObliqueMercator', 'Orthographic', 'Robinson', 'Sinusoidal', 'Stereographic',
-      'TransverseMercator', 'UTM', 'InterruptedGoodeHomolosine', 'RotatedPole',
-      'OSGB', 'LambertZoneII', 'EuroPP', 'Geostationary', 'NearsidePerspective',
-      'EckertI', 'EckertII', 'EckertIII', 'EckertIV', 'EckertV', 'EckertVI',
-      'Spilhaus', 'Aitoff', 'EqualEarth', 'Gnomonic', 'Hammer',
-      'LambertAzimuthalEqualArea', 'NorthPolarStereo', 'OSNI', 'SouthPolarStereo'
-    ];
-    projections.forEach(proj => {
-      const option = document.createElement('option');
-      option.value = proj;
-      option.textContent = proj;
-      this.CRSDropdown.appendChild(option);
-    });
-
-    this.el.appendChild(this.CRSDropdown);
-    this.CRSDropdown.style.display = 'none';
-
-    this.rendererDropdown.addEventListener('change', () => {
-      if (this.rendererDropdown.value === 'cartopy') {
-        this.CRSDropdown.style.display = 'block';
-      } else {
-        this.CRSDropdown.style.display = 'none';
-      }
-    });
-
-    if (this.rendererDropdown.value === 'cartopy') {
-      this.CRSDropdown.style.display = 'block';
-    } else {
-      this.CRSDropdown.style.display = 'none';
-    }
 
     this.map_container = document.createElement('div');
     this.map_container.classList.add('ol-container');
@@ -201,65 +151,6 @@ export class MapView extends DOMWidgetView {
     this.model.on('change:controls', this.controlChanged, this);
     this.model.on('change:zoom', this.zoomChanged, this);
     this.model.on('change:center', this.centerChanged, this);
-
-    this.exportButton.onclick = () => {
-
-      const notebook = MapView.tracker?.currentWidget?.content;
-      if (!notebook?.model) {
-        console.debug("No Notebook moodel found");
-        return;
-      }
-
-      const exportedFeatures = new GeoJSON().writeFeatures(this.vectorSource.getFeatures());
-
-      let exportScriptSource = '';
-      if (this.rendererDropdown.value === 'none') {
-        exportScriptSource = 'drawn_data_JSON=' + JSON.stringify(exportedFeatures);
-      } else if (this.rendererDropdown.value === 'shapely') {
-        exportScriptSource = `
-import shapely
-import matplotlib.pyplot as plt
-
-exported_shapely = shapely.from_geojson(${JSON.stringify(exportedFeatures)})
-plt.scatter(
-    shapely.get_coordinates(exported_shapely)[:, 0],
-    shapely.get_coordinates(exported_shapely)[:, 1],
-)
-plt.show()
-print("generated on ${new Date().toISOString()}")
-        `;
-      } else if (this.rendererDropdown.value === 'cartopy') {
-        exportScriptSource = `
-import shapely
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-exported_shapely = shapely.from_geojson(${JSON.stringify(exportedFeatures)})
-ax = plt.axes(projection=ccrs.${this.CRSDropdown.value}())
-ax.set_global()
-ax.coastlines()
-plt.scatter(
-    shapely.get_coordinates(exported_shapely)[:, 0],
-    shapely.get_coordinates(exported_shapely)[:, 1],
-  transform=ccrs.PlateCarree(),
-)
-plt.show()
-print("generated on ${new Date().toISOString()}")
-        `;
-      }
-
-
-      notebook.model.sharedModel.insertCell(
-        notebook.widgets.findIndex(cell => cell.node.contains(this.el)) + 1,
-        {
-          cell_type: 'code',
-          source: exportScriptSource,
-          metadata: {}
-        }
-      );
-
-      return;
-    }
   }
 
   handleMapClick(event: MapBrowserEvent<MouseEvent>) {
@@ -357,8 +248,5 @@ print("generated on ${new Date().toISOString()}")
   layerViews: ViewList<LayerView>;
   overlayViews: ViewList<BaseOverlayView>;
   controlViews: ViewList<BaseControlView>;
-  private exportButton: HTMLButtonElement;
-  private rendererDropdown: HTMLSelectElement;
-  private CRSDropdown: HTMLSelectElement;
   static tracker: INotebookTracker;
 }
