@@ -252,7 +252,7 @@ class DrawAndExport(BaseControl):
 
     _view_name = Unicode("DrawAndExportView").tag(sync=True)
     _model_name = Unicode("DrawAndExportModel").tag(sync=True)
-    
+
 
 class Map(DOMWidget):
     """Map class.

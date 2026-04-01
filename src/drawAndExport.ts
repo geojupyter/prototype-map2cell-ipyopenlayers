@@ -37,7 +37,7 @@ class DrawAndExportControl extends Control {
     element.className = 'draw-and-export-group ol-unselectable ol-control';
     element.appendChild(drawToggleButton);
     element.appendChild(exportButton);
-    
+
     super({
       element: element,
       target: options.target,
@@ -45,10 +45,10 @@ class DrawAndExportControl extends Control {
 
     drawToggleButton.addEventListener('click', this.handleToggleDrawMode.bind(this), false);
     exportButton.addEventListener('click', this.handleCodeExport.bind(this), false);
-  
-    this.drawMode = false; 
+
+    this.drawMode = false;
   }
-  
+
   handleCodeExport() {
 
     console.log('export clicked');
@@ -67,7 +67,7 @@ class DrawAndExportControl extends Control {
 import shapely
 import matplotlib.pyplot as plt
 
-exported_shapely = shapely.from_geojson(${JSON.stringify(exportedFeatures)})
+exported_shapely = shapely.from_geojson("""${exportedFeatures}""")
 plt.scatter(
     shapely.get_coordinates(exported_shapely)[:, 0],
     shapely.get_coordinates(exported_shapely)[:, 1],
@@ -88,8 +88,8 @@ print("generated on ${new Date().toISOString()}")
 
     return;
 
-    
-    
+
+
   }
 
   handleToggleDrawMode() {
