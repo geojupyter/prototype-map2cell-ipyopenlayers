@@ -30,6 +30,8 @@ class DrawAndExportControl extends Control {
     const drawToggleButton = document.createElement('button');
     drawToggleButton.innerHTML = '✏️';
 
+    // new element for the dropdown `typeDropdown`
+
     const exportButton = document.createElement('button');
     exportButton.innerHTML = '💾';
 
@@ -96,12 +98,13 @@ print("generated on ${new Date().toISOString()}")
     if (this.drawMode) {
       this.disableDrawMode();
     } else {
-      this.enableDrawMode();
+      this.enableDrawMode();  // pass that argument `typeDropdown.value` into function
     }
   }
 
-  enableDrawMode() {
+  enableDrawMode() {  // Add an argument of `type: "Polygon" | "Point" | "Line"`
     if (!!this.drawMode) return;
+
 
     console.debug("Enabling draw mode");
     console.debug(this.getMap());
@@ -112,6 +115,9 @@ print("generated on ${new Date().toISOString()}")
     this.vectorLayer = new Vector({ source: this.vectorSource, zIndex: 1000 });
     this.drawInteraction = new Draw({
       source: this.vectorSource,
+      // vary type on the type argument
+      // OR instead of taking an argument, directly access `this.typeDropdown.value`
+      // **The latter is preferred**.
       type: "Point",
     })
 
