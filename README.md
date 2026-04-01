@@ -36,6 +36,8 @@ This project showcases the integration of `ipyopenlayers` in an electricity dash
 
 You can install using `pip`:
 
+####THIS DOESN"T WORK NO BUILDS OF THIS FORK PUBLISHED YET!
+
 ```bash
 pip install ipyopenlayers
 ```
@@ -56,10 +58,17 @@ conda create -n ipyopenlayers-dev -c conda-forge nodejs python jupyterlab=4.0.11
 conda activate ipyopenlayers-dev
 ```
 
+
 Install the python. This will also build the TS package.
 
 ```bash
 pip install -e ".[test, examples]"
+```
+
+or use UV
+
+```bash
+uv sync --all-groups
 ```
 
 When developing your extensions, you need to manually enable your extensions with the
