@@ -17,6 +17,7 @@ import { MapView } from './widget';
 
 class DrawAndExportControl extends Control {
   drawMode: boolean;
+  typeDropdown: HTMLSelectElement;
   vectorSource: VectorSource;
   vectorLayer: Vector<Feature<Geometry>>;
   drawInteraction: Draw;
@@ -30,12 +31,25 @@ class DrawAndExportControl extends Control {
     const drawToggleButton = document.createElement('button');
     drawToggleButton.innerHTML = '✏️';
 
+    const typeDropdown = document.createElement('select');
+    for (const type of ['Point', 'LineString', 'Polygon']) {
+      const option = document.createElement('option');
+      option.value = type;
+      option.text = type;
+      typeDropdown.appendChild(option);
+    }
+
     const exportButton = document.createElement('button');
     exportButton.innerHTML = '💾';
 
+    const drawControls = document.createElement('div');
+    drawControls.className = 'draw-controls';
+    drawControls.appendChild(drawToggleButton);
+    drawControls.appendChild(typeDropdown);
+
     const element = document.createElement('div');
     element.className = 'draw-and-export-group ol-unselectable ol-control';
-    element.appendChild(drawToggleButton);
+    element.appendChild(drawControls);
     element.appendChild(exportButton);
 
     super({
@@ -45,8 +59,11 @@ class DrawAndExportControl extends Control {
 
     drawToggleButton.addEventListener('click', this.handleToggleDrawMode.bind(this), false);
     exportButton.addEventListener('click', this.handleCodeExport.bind(this), false);
+    typeDropdown.addEventListener('change', this.handleTypeChange.bind(this), false);
 
+    this.typeDropdown = typeDropdown;
     this.drawMode = false;
+    this.typeDropdown.style.display = 'none';
   }
 
   handleCodeExport() {
@@ -63,12 +80,23 @@ class DrawAndExportControl extends Control {
 
     let exportScriptSource = '';
 
+    let plotType = '';
+    if (this.typeDropdown.value === 'Point') {
+      plotType = 'scatter';
+    }
+    if (this.typeDropdown.value === 'LineString') {
+      plotType = 'plot';
+    }
+    if (this.typeDropdown.value === 'Polygon') {
+      plotType = 'fill';
+    }
+
     exportScriptSource = `
 import shapely
 import matplotlib.pyplot as plt
 
 exported_shapely = shapely.from_geojson("""${exportedFeatures}""")
-plt.scatter(
+plt.${plotType}(
     shapely.get_coordinates(exported_shapely)[:, 0],
     shapely.get_coordinates(exported_shapely)[:, 1],
 )
@@ -100,8 +128,15 @@ print("generated on ${new Date().toISOString()}")
     }
   }
 
+  handleTypeChange() {
+    this.disableDrawMode();
+    this.enableDrawMode();
+  }
+
   enableDrawMode() {
+    this.typeDropdown.style.display = 'inline-block';
     if (!!this.drawMode) return;
+
 
     console.debug("Enabling draw mode");
     console.debug(this.getMap());
@@ -112,7 +147,7 @@ print("generated on ${new Date().toISOString()}")
     this.vectorLayer = new Vector({ source: this.vectorSource, zIndex: 1000 });
     this.drawInteraction = new Draw({
       source: this.vectorSource,
-      type: "Point",
+      type: this.typeDropdown.value as 'Point' | 'LineString' | 'Polygon',
     })
 
     this.getMap()!.addLayer(this.vectorLayer);
@@ -122,6 +157,7 @@ print("generated on ${new Date().toISOString()}")
   }
 
   disableDrawMode() {
+    this.typeDropdown.style.display = 'none';
     if (!this.drawMode) return;
 
     console.debug("Disabling draw mode");

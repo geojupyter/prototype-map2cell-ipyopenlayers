@@ -24,3 +24,9 @@
   top: 65px;
   left: .5em;
 }
+
+.draw-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
