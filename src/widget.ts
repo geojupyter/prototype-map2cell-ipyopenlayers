@@ -97,6 +97,15 @@ export class MapView extends DOMWidgetView {
     });
     this.el.appendChild(this.map_container);
 
+    const send_to_chat_button = document.createElement('button');
+    send_to_chat_button.textContent = 'Send to Chat';
+    send_to_chat_button.addEventListener('click', () => {
+      // TODO
+    });
+    this.el.appendChild(send_to_chat_button);
+
+
+
     this.layerViews = new ViewList(
       this.addLayerModel,
       this.removeLayerView,
