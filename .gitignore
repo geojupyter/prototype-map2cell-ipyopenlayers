@@ -170,3 +170,4 @@ ipyopenlayers/nbextension
 #jupyter lite
 .jupyterlite.doit.db
 examples/ortho.tif
+examples/ortho_cog.tif

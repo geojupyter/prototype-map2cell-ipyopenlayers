@@ -11,7 +11,7 @@ name = "ipyopenlayers"
 description = "OpenLayers Jupyter Widget"
 readme = "README.md"
 license = { file = "LICENSE.txt" }
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 authors = [
     { name = "QuantStack", email = "me@me.com" },
 ]
@@ -37,6 +37,9 @@ classifiers = [
 dependencies = [
     "ipywidgets>=8.0.0",
     "jupyter>=1.1.1",
+    "jupyter-server-proxy>=4.5.0",
+    "jupyter-xarray-tiler>=0.2.0",
+    "rasterstats>=0.20.0",
     "traitlets",
 ]
 version = "0.2.1"
