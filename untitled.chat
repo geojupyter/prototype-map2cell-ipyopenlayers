@@ -1,0 +1,60 @@
+{
+  "messages": [
+    {
+      "type": "msg",
+      "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
+      "id": "c864a08c-2114-4b5f-9839-a68d412830e0",
+      "time": 1779224204.2361572,
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
+      "raw_time": false
+    },
+    {
+      "id": "197e14a6-db63-4831-8229-3f5058afcbc8",
+      "type": "msg",
+      "raw_time": false,
+      "time": 1779224213.579745,
+      "body": "@Copilot ",
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
+      "mentions": [
+        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+      ]
+    },
+    {
+      "id": "7ec9f685-d135-439a-b381-23cfaf1fda80",
+      "type": "msg",
+      "raw_time": false,
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
+      "time": 1779224221.3513017,
+      "mentions": [
+        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+      ],
+      "body": "@Copilot test"
+    }
+  ],
+  "users": {
+    "da50671122c94cb78ef4f6cdf9c33827": {
+      "username": "da50671122c94cb78ef4f6cdf9c33827",
+      "initials": "AT",
+      "color": "var(--jp-collaborator-color3)",
+      "mention_name": "Anonymous-Thelxinoe",
+      "display_name": "Anonymous Thelxinoe",
+      "name": "Anonymous Thelxinoe",
+      "avatar_url": null,
+      "bot": false
+    },
+    "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": {
+      "mention_name": "Copilot",
+      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
+      "display_name": "Copilot",
+      "bot": true,
+      "name": "Copilot",
+      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona",
+      "initials": null,
+      "color": null
+    }
+  },
+  "attachments": {},
+  "metadata": {
+    "id": "81d78059-8fa9-426b-bcc0-eb647e0169c9"
+  }
+}
