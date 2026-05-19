@@ -105,8 +105,9 @@ print("generated on ${new Date().toISOString()}")
       `;
 
 
+    const targetNotebookCell = notebook.activeCellIndex + 1;
     notebook.model.sharedModel.insertCell(
-      notebook.activeCellIndex + 1,
+      targetNotebookCell,
       {
         cell_type: 'code',
         source: exportScriptSource,
@@ -114,10 +115,17 @@ print("generated on ${new Date().toISOString()}")
       }
     );
 
+    if (confirm("Use AI? ✨")) {
+      window.dispatchEvent(
+        new CustomEvent('ipyopenlayers:ai-suggestion-bubble-insert', {
+          detail: { prompt: `Read the code in cell ${targetNotebookCell} and suggest how I can integrate the shape defined there with the code in the rest of my notebook.`},
+        })
+      );
+    } else {
+      alert("User has foolishly rejected the use AI. Don't you know what year it is?");
+    }
+
     return;
-
-
-
   }
 
   handleToggleDrawMode() {

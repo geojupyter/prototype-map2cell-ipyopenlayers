@@ -37,6 +37,7 @@ classifiers = [
 dependencies = [
     "ipywidgets>=8.0.0",
     "jupyter>=1.1.1",
+    "jupyter-ai>=3.0.0",
     "jupyter-server-proxy>=4.5.0",
     "jupyter-xarray-tiler>=0.2.0",
     "rasterstats>=0.20.0",
