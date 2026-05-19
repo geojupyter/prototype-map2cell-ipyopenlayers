@@ -4,8 +4,9 @@
 # Copyright (c) QuantStack.
 # Distributed under the terms of the Modified BSD License.
 
-from .openlayers import *
-from ._version import __version__, version_info
+from .openlayers import *  # noqa f403
+from ._version import __version__ as __version__, version_info as version_info
+
 
 def _jupyter_labextension_paths():
     """Called by Jupyter Lab Server to detect if it is a valid labextension and
@@ -19,10 +20,12 @@ def _jupyter_labextension_paths():
         from `src` directory into <jupyter path>/labextensions/<dest> directory
         during widget installation
     """
-    return [{
-        'src': 'labextension',
-        'dest': 'ipyopenlayers',
-    }]
+    return [
+        {
+            "src": "labextension",
+            "dest": "ipyopenlayers",
+        }
+    ]
 
 
 def _jupyter_nbextension_paths():
@@ -41,9 +44,11 @@ def _jupyter_nbextension_paths():
     require: Path to importable AMD Javascript module inside the
         <jupyter path>/nbextensions/<dest> directory
     """
-    return [{
-        'section': 'notebook',
-        'src': 'nbextension',
-        'dest': 'ipyopenlayers',
-        'require': 'ipyopenlayers/extension'
-    }]
+    return [
+        {
+            "section": "notebook",
+            "src": "nbextension",
+            "dest": "ipyopenlayers",
+            "require": "ipyopenlayers/extension",
+        }
+    ]

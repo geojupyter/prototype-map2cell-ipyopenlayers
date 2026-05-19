@@ -6,6 +6,7 @@ import { Application, IPlugin } from '@lumino/application';
 import { Widget } from '@lumino/widgets';
 
 import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
+import { INotebookTracker } from '@jupyterlab/notebook';
 
 import * as widgetExports from './widget';
 
@@ -18,7 +19,7 @@ const EXTENSION_ID = 'ipyopenlayers:plugin';
  */
 const examplePlugin: IPlugin<Application<Widget>, void> = {
   id: EXTENSION_ID,
-  requires: [IJupyterWidgetRegistry],
+  requires: [IJupyterWidgetRegistry, INotebookTracker],
   activate: activateWidgetExtension,
   autoStart: true,
 } as unknown as IPlugin<Application<Widget>, void>;
@@ -33,7 +34,9 @@ export default examplePlugin;
 function activateWidgetExtension(
   app: Application<Widget>,
   registry: IJupyterWidgetRegistry,
+  tracker: INotebookTracker,
 ): void {
+  widgetExports.MapView.tracker = tracker;
   registry.registerWidget({
     name: MODULE_NAME,
     version: MODULE_VERSION,
