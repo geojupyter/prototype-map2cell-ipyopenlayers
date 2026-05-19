@@ -34,6 +34,7 @@ export * from './zoomslider';
 export * from './fullscreen';
 export * from './scaleline';
 export * from './mouseposition';
+export * from './drawAndExport';
 export * from './heatmap';
 export * from './rastertilelayer';
 export * from './geotifflayer';

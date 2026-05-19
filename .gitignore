@@ -169,3 +169,6 @@ ipyopenlayers/nbextension
 .yarn
 #jupyter lite
 .jupyterlite.doit.db
+examples/ortho.tif
+examples/ortho_cog.tif
+ndvi.tif
