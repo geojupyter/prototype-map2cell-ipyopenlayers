@@ -92,6 +92,7 @@
   },
   "jupyterlab": {
     "extension": "lib/plugin",
+    "schemaDir": "schema",
     "outputDir": "ipyopenlayers/labextension/",
     "sharedPackages": {
       "@jupyter-widgets/base": {

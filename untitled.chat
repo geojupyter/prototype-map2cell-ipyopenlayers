@@ -1,73 +1,91 @@
 {
   "messages": [
     {
+      "id": "c864a08c-2114-4b5f-9839-a68d412830e0",
+      "raw_time": false,
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
       "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
-      "raw_time": false,
-      "sender": "da50671122c94cb78ef4f6cdf9c33827",
       "time": 1779224204.2361572,
-      "type": "msg",
-      "id": "c864a08c-2114-4b5f-9839-a68d412830e0"
+      "type": "msg"
     },
     {
-      "id": "197e14a6-db63-4831-8229-3f5058afcbc8",
-      "mentions": [
-        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
-      ],
-      "body": "@Copilot ",
       "raw_time": false,
+      "time": 1779224213.579745,
+      "id": "197e14a6-db63-4831-8229-3f5058afcbc8",
+      "body": "@Copilot ",
       "sender": "da50671122c94cb78ef4f6cdf9c33827",
       "type": "msg",
-      "time": 1779224213.579745
-    },
-    {
-      "type": "msg",
       "mentions": [
         "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
-      ],
+      ]
+    },
+    {
+      "raw_time": false,
       "sender": "da50671122c94cb78ef4f6cdf9c33827",
       "id": "7ec9f685-d135-439a-b381-23cfaf1fda80",
-      "body": "@Copilot test",
+      "type": "msg",
+      "mentions": [
+        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+      ],
       "time": 1779224221.3513017,
+      "body": "@Copilot test"
+    },
+    {
+      "sender": "4653d06c95ea486e8a3f0e48c0417045",
+      "id": "6f811cb3-24a8-4a98-a44f-2edcbb85a99d",
+      "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
+      "time": 1779471274.664347,
+      "type": "msg",
       "raw_time": false
     },
     {
-      "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
-      "sender": "4653d06c95ea486e8a3f0e48c0417045",
+      "time": 1780603167.6677248,
+      "id": "0d9bee91-61c1-431f-8eb2-2213bbdd73d6",
+      "sender": "2fec36826da941a9a1621e22473a9623",
       "type": "msg",
       "raw_time": false,
-      "time": 1779471274.664347,
-      "id": "6f811cb3-24a8-4a98-a44f-2edcbb85a99d"
+      "body": "yeeeeeee"
     }
   ],
   "users": {
-    "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": {
-      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona",
-      "color": null,
-      "bot": true,
-      "name": "Copilot",
-      "display_name": "Copilot",
-      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
-      "initials": null
-    },
-    "4653d06c95ea486e8a3f0e48c0417045": {
-      "mention_name": "Anonymous-Kallichore",
-      "bot": false,
+    "2fec36826da941a9a1621e22473a9623": {
       "avatar_url": null,
-      "username": "4653d06c95ea486e8a3f0e48c0417045",
-      "color": "var(--jp-collaborator-color1)",
-      "name": "Anonymous Kallichore",
-      "initials": "AK",
-      "display_name": "Anonymous Kallichore"
+      "name": "Anonymous Euanthe",
+      "bot": false,
+      "display_name": "Anonymous Euanthe",
+      "initials": "AE",
+      "color": "var(--jp-collaborator-color5)",
+      "mention_name": "Anonymous-Euanthe",
+      "username": "2fec36826da941a9a1621e22473a9623"
+    },
+    "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": {
+      "color": null,
+      "initials": null,
+      "display_name": "Copilot",
+      "name": "Copilot",
+      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
+      "bot": true,
+      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona"
     },
     "da50671122c94cb78ef4f6cdf9c33827": {
-      "username": "da50671122c94cb78ef4f6cdf9c33827",
       "display_name": "Anonymous Thelxinoe",
       "color": "var(--jp-collaborator-color3)",
       "name": "Anonymous Thelxinoe",
+      "username": "da50671122c94cb78ef4f6cdf9c33827",
+      "initials": "AT",
       "bot": false,
       "mention_name": "Anonymous-Thelxinoe",
+      "avatar_url": null
+    },
+    "4653d06c95ea486e8a3f0e48c0417045": {
+      "initials": "AK",
+      "color": "var(--jp-collaborator-color1)",
+      "username": "4653d06c95ea486e8a3f0e48c0417045",
+      "mention_name": "Anonymous-Kallichore",
+      "display_name": "Anonymous Kallichore",
+      "name": "Anonymous Kallichore",
       "avatar_url": null,
-      "initials": "AT"
+      "bot": false
     }
   },
   "attachments": {},

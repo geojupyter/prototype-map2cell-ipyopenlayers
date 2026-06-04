@@ -112,9 +112,9 @@ print("generated on ${new Date().toISOString()}")
         cell_type: 'code',
         source: exportScriptSource,
         metadata: { bubbles: [
-          "test1",
-          "test2",
-          "test3",
+          {label: "test 1", prompt: "test testy tewst"},
+          {label: "test 2", prompt: "helooooooooo"},
+          {label: "test 3", prompt: "yeeeeeee"},
         ]}
       }
     );
