@@ -10,6 +10,7 @@ import { INotebookTracker } from '@jupyterlab/notebook';
 import { IChatTracker } from '@jupyter/chat';
 
 import * as widgetExports from './widget';
+import { initBubbles } from './bubbles';
 
 import { MODULE_NAME, MODULE_VERSION } from './version';
 
@@ -50,6 +51,7 @@ function activateWidgetExtension(
     chatWidget.model.input.value = prompt;
     void app.commands.execute('jupyter-ai:focus-chat-input');
   });
+  initBubbles(notebookTracker);
   widgetExports.MapView.tracker = notebookTracker;
   registry.registerWidget({
     name: MODULE_NAME,

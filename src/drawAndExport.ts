@@ -111,19 +111,24 @@ print("generated on ${new Date().toISOString()}")
       {
         cell_type: 'code',
         source: exportScriptSource,
-        metadata: {}
+        metadata: { bubbles: [
+          "test1",
+          "test2",
+          "test3",
+        ]}
       }
     );
 
-    if (confirm("Use AI? ✨")) {
+    /*if (confirm("Use AI? ✨")) {
       window.dispatchEvent(
         new CustomEvent('ipyopenlayers:ai-suggestion-bubble-insert', {
           detail: { prompt: `Read the code in cell ${targetNotebookCell} and suggest how I can integrate the shape defined there with the code in the rest of my notebook.`},
         })
       );
+
     } else {
       alert("User has foolishly rejected the use AI. Don't you know what year it is?");
-    }
+    }*/
 
     return;
   }

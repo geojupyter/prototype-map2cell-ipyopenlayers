@@ -1,56 +1,73 @@
 {
   "messages": [
     {
-      "type": "msg",
       "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
-      "id": "c864a08c-2114-4b5f-9839-a68d412830e0",
-      "time": 1779224204.2361572,
+      "raw_time": false,
       "sender": "da50671122c94cb78ef4f6cdf9c33827",
-      "raw_time": false
+      "time": 1779224204.2361572,
+      "type": "msg",
+      "id": "c864a08c-2114-4b5f-9839-a68d412830e0"
     },
     {
       "id": "197e14a6-db63-4831-8229-3f5058afcbc8",
-      "type": "msg",
-      "raw_time": false,
-      "time": 1779224213.579745,
-      "body": "@Copilot ",
-      "sender": "da50671122c94cb78ef4f6cdf9c33827",
-      "mentions": [
-        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
-      ]
-    },
-    {
-      "id": "7ec9f685-d135-439a-b381-23cfaf1fda80",
-      "type": "msg",
-      "raw_time": false,
-      "sender": "da50671122c94cb78ef4f6cdf9c33827",
-      "time": 1779224221.3513017,
       "mentions": [
         "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
       ],
-      "body": "@Copilot test"
+      "body": "@Copilot ",
+      "raw_time": false,
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
+      "type": "msg",
+      "time": 1779224213.579745
+    },
+    {
+      "type": "msg",
+      "mentions": [
+        "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona"
+      ],
+      "sender": "da50671122c94cb78ef4f6cdf9c33827",
+      "id": "7ec9f685-d135-439a-b381-23cfaf1fda80",
+      "body": "@Copilot test",
+      "time": 1779224221.3513017,
+      "raw_time": false
+    },
+    {
+      "body": "Read the code in cell 2 and suggest how I can integrate the shape defined there with the code in the rest of my notebook.",
+      "sender": "4653d06c95ea486e8a3f0e48c0417045",
+      "type": "msg",
+      "raw_time": false,
+      "time": 1779471274.664347,
+      "id": "6f811cb3-24a8-4a98-a44f-2edcbb85a99d"
     }
   ],
   "users": {
-    "da50671122c94cb78ef4f6cdf9c33827": {
-      "username": "da50671122c94cb78ef4f6cdf9c33827",
-      "initials": "AT",
-      "color": "var(--jp-collaborator-color3)",
-      "mention_name": "Anonymous-Thelxinoe",
-      "display_name": "Anonymous Thelxinoe",
-      "name": "Anonymous Thelxinoe",
-      "avatar_url": null,
-      "bot": false
-    },
     "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona": {
-      "mention_name": "Copilot",
-      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
-      "display_name": "Copilot",
+      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona",
+      "color": null,
       "bot": true,
       "name": "Copilot",
-      "avatar_url": "/api/ai/avatars/jupyter-ai-personas%3A%3Ajupyter_ai_acp_client%3A%3ACopilotAcpPersona",
-      "initials": null,
-      "color": null
+      "display_name": "Copilot",
+      "username": "jupyter-ai-personas::jupyter_ai_acp_client::CopilotAcpPersona",
+      "initials": null
+    },
+    "4653d06c95ea486e8a3f0e48c0417045": {
+      "mention_name": "Anonymous-Kallichore",
+      "bot": false,
+      "avatar_url": null,
+      "username": "4653d06c95ea486e8a3f0e48c0417045",
+      "color": "var(--jp-collaborator-color1)",
+      "name": "Anonymous Kallichore",
+      "initials": "AK",
+      "display_name": "Anonymous Kallichore"
+    },
+    "da50671122c94cb78ef4f6cdf9c33827": {
+      "username": "da50671122c94cb78ef4f6cdf9c33827",
+      "display_name": "Anonymous Thelxinoe",
+      "color": "var(--jp-collaborator-color3)",
+      "name": "Anonymous Thelxinoe",
+      "bot": false,
+      "mention_name": "Anonymous-Thelxinoe",
+      "avatar_url": null,
+      "initials": "AT"
     }
   },
   "attachments": {},
