@@ -37,6 +37,7 @@ classifiers = [
 dependencies = [
     "ipywidgets>=8.0.0",
     "jupyter>=1.1.1",
+    "jupyter-ai>=2.31.7",
     "traitlets",
 ]
 version = "0.2.1"
