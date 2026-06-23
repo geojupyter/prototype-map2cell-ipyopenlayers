@@ -1,0 +1,14 @@
+{
+  "title": "Bubbles",
+  "description": "AI suggestion bubble for cell toolbar",
+  "jupyter.lab.toolbars": {
+    "Cell": [
+      { "name": "bubble1", "rank": 0 },
+      { "name": "bubble2", "rank": 1 },
+      { "name": "bubble3", "rank": 2 }
+    ]
+  },
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}

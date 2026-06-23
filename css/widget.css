@@ -19,3 +19,14 @@
   overflow: hidden;
   flex: 1 1 auto;
 }
+
+.draw-and-export-group {
+  top: 65px;
+  left: .5em;
+}
+
+.draw-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}

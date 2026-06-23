@@ -7,6 +7,7 @@ import {
   unpack_models,
   ViewList,
 } from '@jupyter-widgets/base';
+import { INotebookTracker } from '@jupyterlab/notebook';
 import { LayerModel, LayerView } from './layer';
 import { BaseOverlayModel, BaseOverlayView } from './baseoverlay';
 import { BaseControlModel, BaseControlView } from './basecontrol';
@@ -29,6 +30,7 @@ export * from './zoomslider';
 export * from './fullscreen';
 export * from './scaleline';
 export * from './mouseposition';
+export * from './drawAndExport';
 export * from './heatmap';
 export * from './rastertilelayer';
 export * from './geotifflayer';
@@ -37,6 +39,7 @@ export * from './vectortilelayer';
 const DEFAULT_LOCATION = [0.0, 0.0];
 
 export class MapModel extends DOMWidgetModel {
+
   defaults() {
     return {
       ...super.defaults(),
@@ -243,4 +246,5 @@ export class MapView extends DOMWidgetView {
   layerViews: ViewList<LayerView>;
   overlayViews: ViewList<BaseOverlayView>;
   controlViews: ViewList<BaseControlView>;
+  static tracker: INotebookTracker;
 }
